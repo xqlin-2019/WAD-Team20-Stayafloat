@@ -1,0 +1,55 @@
+
+.jumbotron {
+     background: #102B72;
+}
+
+h1 {
+    margin-bottom: 15px;
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 33px;
+    line-height: 41px;
+    text-align: center;
+    color: #000000;
+  }
+
+h5 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+hr {
+    background-color: #FFFFFF;
+}
+
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 40px;
+  color:black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 40px;
+  color: black;
+}
+
+#each_joke {
+    text-align: center;
+    border: none;
+    max-width: 60%;
+}
+
+#test p {
+  opacity: 0;
+  font-size: 21px;
+  margin-top: 25px;
+  text-align: center;
+}

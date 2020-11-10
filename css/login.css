@@ -1,0 +1,50 @@
+
+  h1 {
+    margin-bottom: 15px;
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 33px;
+    line-height: 41px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .form-control {
+    padding: 20px 0 20px 50px;
+
+    background-color: #F8F8F8;
+    border-radius: 10px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  #login_btn {
+    display: block;
+    width: 100%;
+    background: #102B72;
+    border-radius: 10px;
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+
+    color: #FFFFFF;
+  }
+
+  .form-group {
+    text-align: left;
+  }
+
+  .form-group i { 
+    position: absolute; 
+} 
+
+.icon { 
+    padding: 14px 20px 20px 20px; 
+} 

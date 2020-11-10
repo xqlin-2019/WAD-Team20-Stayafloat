@@ -1,0 +1,80 @@
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.col-lg-3 {
+  padding: 0;
+  padding-bottom: 30%;
+  margin-bottom: -30%;
+  background-color: #102B72;
+}
+
+h5 {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+#settings {
+  margin-top: 40%;
+  width: 100%;
+  padding: 15px 10% 15px 10%;
+  background-color: rgba(28, 28, 28, 0.5);
+}
+
+#update_profile {
+  margin-top: 10%;
+  padding-left: 10%;
+}
+
+i {
+  padding-right: 10px;
+}
+.col-2 {
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 15px;
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 33px;
+  line-height: 41px;
+  text-align: center;
+  color: #000000;
+}
+
+
+.form-control {
+  padding: 20px 0 20px 50px;
+  background-color: #F8F8F8;
+  border-radius: 10px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+#submit_btn {
+  display: block;
+  width: 100%;
+  background: #102B72;
+  border-radius: 10px;
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.check-row {
+  margin: 15px 0;
+}
