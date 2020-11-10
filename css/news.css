@@ -18,7 +18,9 @@ h1 {
    color: #000000;
  }
 
-h5 {
+
+
+h5{
     font-family: Libre Baskerville;
    font-style: normal;
    font-weight: normal;
@@ -26,6 +28,26 @@ h5 {
    color: black;
 }
 
-#article_image {
-    text-align: center;
+h2{
+  font-family: Libre Baskerville;
+ font-style: normal;
+ font-weight: normal;
+ line-height: 30px;
+ color: black;
+}
+
+p {
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: normal;
+}
+
+a {
+  margin-left: 25px;
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+  color: black;
 }

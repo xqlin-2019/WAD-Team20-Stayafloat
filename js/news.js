@@ -1,10 +1,9 @@
 var key = "0c73b075b02f486ab230160d61a0f815";
 var key2 = "c2138d7edb6e481a80ee75989ac1c8a9";
-var cors = 'http://cors-anywhere.herokuapp.com/';
 
 
 var country = 'sg';
-var pageSize = '2';
+var pageSize = '3';
 var first_article = true;
 
 
@@ -14,6 +13,17 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 var formatted_date = yyyy + '-' + mm + '-' + dd;
+
+var category_colours = {
+    Business: "badge-primary",
+    Entertainment: "badge-warning",
+    General: "badge-secondary",
+    Health: "badge-success",
+    Science: "badge-info",
+    Sports: "badge-warning",
+    Technology: "badge-dark",
+    Singapore: "badge-danger"
+}
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -26,13 +36,11 @@ function shuffleArray(array) {
 
 function retrieve_preference() {
 
-    // var preferences = sessionStorage.getItem('preference');
-    // if (preferences == "") {
-    //     return
-    // }
-    // var topics = preferences.split(',');
-
-    var topics = ["Entertainment","Singapore","Technology","Business"]
+    var preferences = sessionStorage.getItem('preference');
+    if (preferences == "") {
+        return
+    }
+    var topics = preferences.split(',');
     shuffleArray(topics);
 
     for (each of topics){
@@ -57,9 +65,9 @@ function display_default(query){
 
     
     if (query == "Singapore"){
-        var url_query = cors +`http://newsapi.org/v2/top-headlines?country=${country}&apiKey=${key2}&pageSize=${pageSize}`;
+        var url_query = `http://newsapi.org/v2/top-headlines?country=${country}&apiKey=${key2}&pageSize=${pageSize}`;
     } else {
-        var url_query = cors +`http://newsapi.org/v2/top-headlines?country=${country}&category=${query}&pageSize=${pageSize}&apiKey=${key2}`;
+        var url_query = `http://newsapi.org/v2/top-headlines?country=${country}&category=${query}&pageSize=${pageSize}&apiKey=${key2}`;
     }
     request.open("GET", url_query, true);
     
@@ -73,8 +81,11 @@ function display(xml,query){
     
     console.log(news);
 
-    var str = ``;
+    var str = `<div>
+                <span class = "badge ${category_colours[query]}" style = "margin-bottom:20px">${query}</span>
+                `
     var first = ``;
+
 
     for (article of news){
 
@@ -86,15 +97,15 @@ function display(xml,query){
             var title = article['title'];
             var description = article['description'];
             var more_info = article['url'];
+            
 
             if (first_article == true){
                 first += `
-                <div class="jumbotron jumbotron-fluid mx-auto" style="background-image: url(${image}); background-size: 100%; "padding-bottom: 0px">
-                <br><br><br><br><br><br><br><br><br><br><br><br>
-                <div class="container bg-light" id = "first_article_text" style = "padding-bottom: 0px; margin:0px; opacity:0.5">
-                <span class = "badge badge-primary">${query}</span><br></img><h3>${title}</h3>
+                <div class="jumbotron jumbotron-fluid" style="background-image: url(${image}); background-size: 100%;padding-left:0px">
+                <div class="container bg-white" id = "first_article_text" style = "padding: 10px; margin:0px; width : 40%; height: 50%; opacity: 0.9">
+                <h2>${title}</h2><br>
                 <p>${description}</p>
-                <small class="text-muted"><a href = ${more_info}>Click to know more</a></small>
+                <small class="text-muted"><a href = ${more_info} id = "links">Click to know more</a></small>
                  </div>
                 </div>
                 `;
@@ -102,21 +113,22 @@ function display(xml,query){
                 first_article = false;
             } else {
                 str += `
-                <div class="card mb-3 mx-auto border-0" style="max-width: 60%;">
+                <div class="card mb-3 mx-auto border-0">
                     <div class="row no-gutters">
-                    <div class="col-md-4">
-                    <br>
+
+                    <div class="col-md-4" style = "text-align: center">
                         <img src="${image}" class="card-img " alt="#" id = "article_image">
                     </div>
+
                     <div class="col-md-8">
-                        <div class="card-body">
-                        <span class = "badge badge-primary">${query}</span>
+                        <div class="card-body" style = "padding-top: 0px; "padding-bottom:30px">
                         <h5 class="card-title">${title}</h5>
                         <p class="card-text">${description}</p>
-                        <p class="card-text"><small class="text-muted"><a href = ${more_info}>Click to know more</a></small></p>
+                        <small class="text-muted"><a href = ${more_info} id = "links">Click to know more</a></small>
                         </div>
                     </div>
                     </div>
+                </div>
                 </div>`
 
             }
