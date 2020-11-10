@@ -5,9 +5,8 @@
 
     // Load Class and DAO 
     spl_autoload_register(function($class){
-            require_once "model/$class.php";
+            require_once "../model/$class.php";
     });
-
 
     if(isset($_GET["action"])) {
         $action = $_GET["action"];
