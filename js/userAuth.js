@@ -27,14 +27,14 @@ function process_login(){
                 sessionStorage.setItem('given_name', obj.profile.given_name)
                 sessionStorage.setItem('faculty', obj.profile.faculty)
                 sessionStorage.setItem('preference', obj.profile.preference)
-                window.location.href = "../Profile.html?";          
+                window.location.href = "./Profile.html?";          
             }
         }
     }
 
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    var url = `../php/userAuth.php?action=login&email=${email}&password=${password}`;
+    var url = `./php/userAuth.php?action=login&email=${email}&password=${password}`;
 
     request.open("GET", url, true); // synchronous
     request.send();
@@ -66,7 +66,7 @@ function process_login(){
     var given_name = document.getElementById("given_name").value;
     var faculty = document.getElementById("faculty").value;
     var preference = getPreference();
-    var url = `../php/userAuth.php?action=register&email=${email}&password=${password}&sur_name=${sur_name}&given_name=${given_name}&faculty=${faculty}&preference=${preference}`;
+    var url = `./php/userAuth.php?action=register&email=${email}&password=${password}&sur_name=${sur_name}&given_name=${given_name}&faculty=${faculty}&preference=${preference}`;
     
     request.open("GET", url, true); // synchronous
     request.send();
@@ -122,7 +122,7 @@ function process_login(){
     }
 
     var email = document.getElementById("email").value;
-    var url = `../php/userAuth.php?action=exist&email=${email}`;
+    var url = `./php/userAuth.php?action=exist&email=${email}`;
 
     request.open("GET", url, true); // synchronous
     request.send();
@@ -214,7 +214,7 @@ function check_exist(){
 
     var email = document.getElementById("email").value;
 
-    var url = `../php/userAuth.php?action=exist&email=${email}`;
+    var url = `./php/userAuth.php?action=exist&email=${email}`;
     request.open("GET", url, true); // synchronous
     request.send();
   }
@@ -239,7 +239,7 @@ function check_exist(){
     var email = sessionStorage.getItem('email');
     var new_preference  = getPreference();
     
-    var url = `../php/userAuth.php?action=updatePreference&email=${email}&preference=${new_preference}`;
+    var url = `./php/userAuth.php?action=updatePreference&email=${email}&preference=${new_preference}`;
     request.open("GET", url, true); // synchronous
     request.send();
   }
@@ -299,7 +299,7 @@ function check_exist(){
     var email = sessionStorage.getItem('email');
     var new_password  = document.getElementById("password2").value;;
     
-    var url = `../php/userAuth.php?action=updatePassword&email=${email}&password=${new_password}`;
+    var url = `./php/userAuth.php?action=updatePassword&email=${email}&password=${new_password}`;
     request.open("GET", url, true); // synchronous
     request.send();
   }
