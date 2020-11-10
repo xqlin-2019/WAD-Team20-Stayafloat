@@ -64,7 +64,8 @@ function get_jokes(){
 
     }
 
-    var url= `https://sv443.net/jokeapi/v2/joke/Any?amount=6?blacklistFlags=nsfw,religious,political,racist,sexist`;
+    var url= `https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist&amount=6`;
+    
 
 
     request.open("GET", url, true);
