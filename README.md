@@ -1,2 +1,2 @@
-# WAD-Team20-Stayafloat
-WAD Group Project for Team 20
+# WAD-Team22-Stayafloat
+WAD Group Project for Team 22
