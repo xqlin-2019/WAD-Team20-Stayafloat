@@ -32,8 +32,9 @@ h2{
   font-family: Libre Baskerville;
  font-style: normal;
  font-weight: normal;
- line-height: 30px;
- color: black;
+ line-height: 2vw;
+ color:white;
+ font-size:2vw;
 }
 
 p {
@@ -50,4 +51,13 @@ a {
   font-size: 20px;
   line-height: 25px;
   color: black;
+}
+
+h6 {
+  font-family: Libre Baskerville;
+   font-style: normal;
+   font-weight: bold;
+   line-height: 22px;
+   color: black;
+   text-align: center;
 }

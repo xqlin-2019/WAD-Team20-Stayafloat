@@ -10,9 +10,9 @@ var first_article = true;
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
-var formatted_date = yyyy + '-' + mm + '-' + dd;
+var formatted_date = dd + '/' + mm + '/' + yyyy;
 
 var category_colours = {
     Business: "badge-primary",
@@ -78,8 +78,6 @@ function display_default(query){
 function display(xml,query){
     var response_json = JSON.parse(xml.responseText);
     var news = response_json.articles;
-    
-    console.log(news);
 
     var str = `<div>
                 <span class = "badge ${category_colours[query]}" style = "margin-bottom:20px">${query}</span>
@@ -101,12 +99,11 @@ function display(xml,query){
 
             if (first_article == true){
                 first += `
-                <div class="jumbotron jumbotron-fluid" style="background-image: url(${image}); background-size: 100%;padding-left:0px">
-                <div class="container bg-white" id = "first_article_text" style = "padding: 10px; margin:0px; width : 40%; height: 50%; opacity: 0.9">
-                <h2>${title}</h2><br>
-                <p>${description}</p>
-                <small class="text-muted"><a href = ${more_info} id = "links">Click to know more</a></small>
-                 </div>
+                <div class="jumbotron jumbotron-fluid" style="background-image: url(${image}); background-size: 100%;padding-left:0px;margin-bottom: 15px;">
+                    <div class="container mb-3" id = "first_article_text" style = "padding: 20px; margin:0px; width : 40%; height: 50%; opacity: 0.9;  background-color: #102B72;color:white">
+                        <h2>${title}</h2><br>
+                        <small class="text-muted"><a href = ${more_info} id = "links" style = "color: white">Click to know more</a></small>
+                    </div>
                 </div>
                 `;
 
@@ -117,14 +114,14 @@ function display(xml,query){
                     <div class="row no-gutters">
 
                     <div class="col-md-4" style = "text-align: center">
-                        <img src="${image}" class="card-img " alt="#" id = "article_image">
+                        <img src="${image}" class="card-img " onerror="this.onerror=null; this.src='./images/placeholder.jpg'"  alt="" id = "article_image">
                     </div>
 
                     <div class="col-md-8">
                         <div class="card-body" style = "padding-top: 0px; "padding-bottom:30px">
                         <h5 class="card-title">${title}</h5>
                         <p class="card-text">${description}</p>
-                        <small class="text-muted"><a href = ${more_info} id = "links">Click to know more</a></small>
+                        <small class="text-muted"><a href = ${more_info} id = "links">Click to know more </a></small>
                         </div>
                     </div>
                     </div>
