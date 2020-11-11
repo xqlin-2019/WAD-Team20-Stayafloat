@@ -31,14 +31,16 @@ hr {
 .carousel-control-next-icon:after
 {
   content: '>';
-  font-size: 40px;
+  font-size: 30px;
   color:black;
+  margin:0px;
 }
 
 .carousel-control-prev-icon:after {
   content: '<';
-  font-size: 40px;
+  font-size: 30px;
   color: black;
+  margin:0px;
 }
 
 #each_joke {
