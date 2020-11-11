@@ -112,5 +112,49 @@
             $pdo = null;
             return $status;
         }
+
+        function addMilestone($email,$description, $date){
+            
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+
+            $sql = "insert into milestones (email, description, date) values (:email, :description, :date)";
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+            $stmt->bindParam(":date", $date, PDO::PARAM_STR);
+
+            $status = $stmt->execute();
+
+            $stmt->closeCursor();
+            $pdo = null;
+            return $status;
+        }
+
+        function getMilestones($email){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "select description, date from milestones where email= :email";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            
+            $stmt->execute();
+            $milestones = [];
+            while($row = $stmt->fetch()){
+            //var_dump($row);
+
+               $milestone = array("description" => $row         ["description"],
+                                "date" => $row["date"]);
+                $milestones[] = $milestone;
+            //var_dump($milestone);
+
+            }
+            $stmt->closeCursor();
+            $pdo = null;
+            return $milestones;
+        }
     }
 ?>

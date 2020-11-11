@@ -26,6 +26,12 @@
         else if ($action == "updatePassword") {
             $result = updatePassword();
         }
+        else if ($action == "addMilestone") {
+            $result = addMilestone();
+        }
+        else if ($action == "getMilestones") {
+            $result = getMilestones();
+        }
 
         // set response code - 200 OK
         http_response_code(200);
@@ -106,6 +112,34 @@
         }
         else{
             return array("update_status" => "fail","email" => $email);
+        }
+    }
+
+    function addMilestone() {
+        $email = $_GET["email"];
+        $description = $_GET["description"];
+        $date = $_GET["date"];
+
+        $dao = new UserDAO();
+        $status = $dao->addMilestone($email,$description, $date);
+        if($status){
+            return array("update_status" => "successful","email" => $email);
+        }
+        else{
+        return array("update_status" => "fail","email" => $email);
+        }
+    }
+
+    function getMilestones(){
+        $email = $_GET["email"];
+        $dao = new UserDAO();
+        $milestones = $dao->getMilestones($email);
+        if($milestones){
+            // var_dump($milestones);
+            return array("retrieve_status" => "successful","email" => $email, "milestones" => $milestones);
+        }
+        else{
+            return array("retrieve_status" => "fail","email" => $email);
         }
     }
 
