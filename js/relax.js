@@ -121,4 +121,99 @@ function display_jokes(xml){
 
 }
 
+function get_videos(){
 
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+
+
+        if( this.readyState == 4 && this.status == 200 ) {
+            display_list(this);
+        }
+
+
+    }
+    
+    var search_term = document.getElementById("search_input").value;
+    sessionStorage.setItem("query", search_term);
+    
+    var query = sessionStorage.getItem("query");
+    
+    console.log(query)
+    
+    if (query == ""){
+        query ='lofi';
+    }
+
+
+
+    var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w'
+    
+    var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist`;
+
+    console.log(url)
+    request.open("GET", url, true);
+    
+    request.send();
+    
+}
+
+function display_list(xml){
+    var response_json = JSON.parse(xml.responseText);
+    console.log(response_json['items'])
+        var items_arr = response_json['items'];
+    
+
+    var str = "";
+
+    for (list of items_arr){
+        var playlist_id = list.id.playlistId;
+        console.log(playlist_id);
+
+        var embed = `<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=${playlist_id}"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+
+        str += embed;
+    }
+    
+    //console.log(str);
+    
+
+
+    document.getElementById("video_list").innerHTML = str;
+
+}
+
+
+function search_videos(){
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+
+
+        if( this.readyState == 4 && this.status == 200 ) {
+            display_list(this);
+        }
+
+
+    }
+    
+    var query = document.getElementById("search_input").value;
+    
+    if (query == ""){
+        query ='lofi';
+    }
+    console.log(query)
+
+
+    var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w'
+    
+    var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist&restriction=SG`;
+
+    console.log(url)
+    request.open("GET", url, true);
+    
+    request.send();
+    
+}
