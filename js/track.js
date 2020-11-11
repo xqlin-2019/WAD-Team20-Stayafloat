@@ -1,8 +1,13 @@
 function login_check() {
     let status = sessionStorage.getItem('login_status');
     if (status != 'successful'){
-        window.location.href = "../UserAuth/login.html?";
+        window.location.href = "./login.html";
     }
+}
+
+function clear_session() {
+    sessionStorage.clear();
+    window.location.href = "../login.html?";
 }
 
 function process_login(){
@@ -40,7 +45,7 @@ function add_milestone(){
     var date = document.getElementById("due_date").value;
 
     console.log(description, date);
-    var url = `../UserAuth/userAuth.php?action=addMilestone&email=${email}&description=${description}&date=${date}`;
+    var url = `./php/userAuth.php?action=addMilestone&email=${email}&description=${description}&date=${date}`;
     request.open("GET", url, true); // synchronous
     request.send();
 }
@@ -81,7 +86,7 @@ function get_milestone(){
     var email = sessionStorage.getItem('email');
 
     // console.log(description, date);
-    var url = `../UserAuth/userAuth.php?action=getMilestones&email=${email}`;
+    var url = `./php/userAuth.php?action=getMilestones&email=${email}`;
     request.open("GET", url, true); // synchronous
     request.send();
 
