@@ -148,7 +148,7 @@ function get_videos(){
 
 
 
-    var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w'
+    //var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w'
     
     var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist`;
 
@@ -207,7 +207,7 @@ function search_videos(){
     console.log(query)
 
 
-    var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w'
+    //var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w'
     
     var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist&restriction=SG`;
 
