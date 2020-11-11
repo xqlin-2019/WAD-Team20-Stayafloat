@@ -99,8 +99,8 @@ function display(xml,query){
 
             if (first_article == true){
                 first += `
-                <div class="jumbotron jumbotron-fluid" style="background-image: url(${image}); background-size: 100%;padding-left:0px;margin-bottom: 15px;">
-                    <div class="container mb-3" id = "first_article_text" style = "padding: 20px; margin:0px; width : 40%; height: 50%; opacity: 0.9;  background-color: #102B72;color:white">
+                <div class="jumbotron jumbotron-fluid" style="background-image: url(${image}); background-size: 100%;padding-left:0px; padding-bottom: 0px; padding-top: 200px;margin-bottom: 15px;">
+                    <div class="col-md-6 mx-0" id = "first_article_text" style = "padding: 20px; margin:0px; width : 100%; height: 30%; opacity: 0.9;  background-color: #102B72;color:white">
                         <h2>${title}</h2><br>
                         <small class="text-muted"><a href = ${more_info} id = "links" style = "color: white">Click to know more</a></small>
                     </div>
@@ -114,7 +114,7 @@ function display(xml,query){
                     <div class="row no-gutters">
 
                     <div class="col-md-4" style = "text-align: center">
-                        <img src="${image}" class="card-img " onerror="this.onerror=null; this.src='./images/placeholder.jpg'"  alt="" id = "article_image">
+                        <img src="${image}" class="card-img " onerror="this.onerror=null; this.src='./images/placeholder.jpg'"  alt="" id = "article_image" style = "padding-bottom: 10px">
                     </div>
 
                     <div class="col-md-8">

@@ -32,9 +32,9 @@ h2{
   font-family: Libre Baskerville;
  font-style: normal;
  font-weight: normal;
- line-height: 2vw;
+ line-height: auto;
  color:white;
- font-size:2vw;
+ font-size:30;
 }
 
 p {
