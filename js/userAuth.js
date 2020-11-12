@@ -2,7 +2,28 @@
 function login_check() {
     let status = sessionStorage.getItem('login_status');
     if (status != 'successful'){
-        window.location.href = "../login.html?";
+        window.location.href = "./login.html?";
+    }
+}
+
+function login_check_button() {
+    let status = sessionStorage.getItem('login_status');
+    if (status != 'successful'){
+        
+        document.getElementById("login_link").hidden = false;
+        document.getElementById("login_btn").hidden = false;
+
+        document.getElementById("tracking_link").hidden = true;
+        document.getElementById("logout_link").hidden = true;
+        document.getElementById("profile_icon").setAttribute("type","hidden")
+    }
+    else {
+        document.getElementById("login_link").hidden = true;
+        document.getElementById("login_btn").hidden = true;
+
+        document.getElementById("tracking_link").hidden = false;
+        document.getElementById("logout_link").hidden = false;
+        document.getElementById("profile_icon").setAttribute("type","image")
     }
 }
 
