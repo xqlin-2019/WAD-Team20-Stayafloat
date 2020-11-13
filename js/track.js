@@ -207,11 +207,9 @@ function display_mood(){
             mood_arr = obj.moods;
             if (obj.moodRetrieve_status == "successful"){
             
-                  
                     for(mood of mood_arr){
 
                     mood_index = mood["mood"];
-                    console.log(mood_index)
                     data.push(mood_index);
 
                     date = mood.date;
@@ -226,8 +224,6 @@ function display_mood(){
 
     var email = sessionStorage.getItem('email');
 
-
-    console.log(data, label);
     var url = `./php/userAuth.php?action=getMood&email=${email}`;
     request.open("GET", url, true); // synchronous
     request.send();
@@ -240,6 +236,7 @@ function display_mood(){
 }
 
 function renderChart(data, labels){
+    
     var ctx = document.getElementById("chart").getContext('2d');
     console.log(data);
     console.log(labels);
@@ -249,9 +246,42 @@ function renderChart(data, labels){
         data: {
             labels: labels,
             datasets: [{
-                label: 'This week',
+                label:false,
                 data: data,
-            }]
+                borderColor: "#102B72",
+                fill: false,
+            }],
         },
+        
+        options: {
+            legend:{
+                display:false
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 50
+                }
+            },
+            color: function(context) {
+                var index = context.dataIndex;
+                var value = context.dataset.data[index];
+                return value < 0 ? 'red' :  // draw negative values in red
+                    index % 2 ? 'blue' :    // else, alternate values in blue and green
+                    'green';
+            },
+            scales: {
+                yAxes: [{
+                        ticks: {
+                            max: 5,
+                            min: 0,
+                            stepSize: 1
+                        }
+                }]
+            }
+        },
+        
      });
 }
