@@ -60,7 +60,10 @@ hr {
 #each_joke {
     text-align: center;
     border: none;
-    max-width: 60%;
+    max-width:70%;
+    font-size: 20px;
+    font-family: Libre Baskerville;
+
 }
 
 #test p {
@@ -73,3 +76,4 @@ hr {
 .d-flex{
   margin-bottom:15px;
 }
+

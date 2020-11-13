@@ -1,18 +1,17 @@
 var key = "0c73b075b02f486ab230160d61a0f815";
 var key2 = "c2138d7edb6e481a80ee75989ac1c8a9";
 
-
 var country = 'sg';
 var pageSize = '3';
 var first_article = true;
-
-
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
 var formatted_date = dd + '/' + mm + '/' + yyyy;
+var updated_date = `<h6> Updated ${formatted_date}</h6>`;
+
 
 var category_colours = {
     Business: "badge-primary",
@@ -38,11 +37,12 @@ function retrieve_preference() {
 
     var preferences = sessionStorage.getItem('preference');
     if (preferences == null){
-        return
+        preferences = "Singapore";
+    } else if (preferences == ""){
+        document.getElementById('first').innerHTML += `<h5 style = "text-align: center; margin-bottom: 20px">To select your news preference, head over to the profile page!</h5>`;
+        console.log("ok");
     }
-    if (preferences == "") {
-        return
-    }
+
     var topics = preferences.split(',');
     shuffleArray(topics);
 
@@ -82,12 +82,12 @@ function display(xml,query){
     var response_json = JSON.parse(xml.responseText);
     var news = response_json.articles;
 
+    // Create news category badge
     var str = `<div>
                 <span class = "badge ${category_colours[query]}" style = "margin-bottom:20px">${query}</span>
                 `
     var first = ``;
 
-    console.log(news);
     for (article of news){
 
 
@@ -99,10 +99,12 @@ function display(xml,query){
             var description = article['description'];
             var more_info = article['url'];
 
+            // if article does not have a description, it will appear as an empty string
             if (description == null){
                 description = " ";
             }
 
+            // first article is displayed as a jumbotron
             if (first_article == true){
                 first += `
                 <div class="jumbotron jumbotron-fluid" style="background-image: url(${image}); background-size: 100%;padding-left:0px; padding-bottom: 0px; padding-top: 200px;margin-bottom: 15px;">
@@ -114,6 +116,7 @@ function display(xml,query){
                 `;
 
                 first_article = false;
+            
             } else {
                 str += `
                 <div class="card mb-3 mx-auto border-0">
@@ -134,8 +137,6 @@ function display(xml,query){
                 </div>
                 </div>`
 
-            
-
         }
         
     }
@@ -145,3 +146,4 @@ function display(xml,query){
 
 }
 
+// document.getElementById('date').innerHTML += updated_date;
