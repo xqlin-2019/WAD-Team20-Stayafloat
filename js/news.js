@@ -37,6 +37,9 @@ function shuffleArray(array) {
 function retrieve_preference() {
 
     var preferences = sessionStorage.getItem('preference');
+    if (preferences == null){
+        return
+    }
     if (preferences == "") {
         return
     }
