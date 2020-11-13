@@ -7,6 +7,8 @@
   <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
   <link rel="stylesheet" href="css/track.css">
   <script src="js/track.js"></script>
+  <script src="js/userAuth.js"></script>
+
 
 
   <title>Track</title>
@@ -18,38 +20,37 @@
   </style>
 
 
-<body onload="login_check();get_milestone();display_mood();">
+<body onload="login_check_button();get_milestone();display_mood();">
   <div class="container-fluid">
 
-        <!-- Right Side Content Column -->
-        <div class="col">
             <!-- Navbar Column -->
-            <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand text-center" href="#">
-                    <img src="./images/lifebuoy 1.png" width="48" height="48" class="d-inline-block align-top" alt="lifebuoy" loading="lazy">
-                    <label class="d-block"> Stay Afloat</label>
-                </a>  
-          
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-          
-                <div class="collapse navbar-collapse" id="myMenu">
-                  <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="./Profile.html">Home</a>
-                    <a class="nav-item nav-link" href="./relax.html">Relax</a>
-                    <a class="nav-item nav-link" href="./news.html">News</a>
-                    <a class="nav-item nav-link active" hidden id="tracking_link" href="tracking.html">Track</a>
-                    <a class="nav-item nav-link d-md-none active" href="./Profile.html">My Profile</a>
-                    <a class="nav-item nav-link d-md-none active" href="./changepassword.html">Change Password</a>
-                    <a class="nav-item nav-link d-md-none active" href="/newspreference.html">News Preference</a>
-                    <a class="nav-item nav-link d-md-none active" hidden id="login_link" href="./login.html" >Login</a>
-                    <a class="nav-item nav-link d-md-none active" hidden id="logout_link" href="./login.html" onclick="clear_session()">Log out</a>
-                </div>
-                </div>
-                <a class="d-none d-sm-block" href="./profile.html"><input class="d-none d-md-block" type="image" id="profile_icon" src="./images/Profile Picture.png" /></a>              
-            </nav>
-            <!-- End of Navbar Column -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand text-center" href="#">
+            <img src="./images/lifebuoy 1.png" width="48" height="48" class="d-inline-block align-top" alt="lifebuoy" loading="lazy">
+            <label class="d-block"> Stay Afloat</label>
+        </a>  
+  
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="myMenu">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="./homepage.html">Home</a>
+            <a class="nav-item nav-link active" href="./relax.html">Relax</a>
+            <a class="nav-item nav-link active" href="./news.html">News</a>
+            <a class="nav-item nav-link active" hidden id="tracking_link" href="tracking.html">Track</a>
+            <a class="nav-item nav-link d-md-none active" href="./Profile.html">My Profile</a>
+            <a class="nav-item nav-link d-md-none active" href="./changepassword.html">Change Password</a>
+            <a class="nav-item nav-link d-md-none active" href="/newspreference.html">News Preference</a>
+            <a class="nav-item nav-link d-md-none active" hidden id="login_link" href="./login.html" >Login</a>
+            <a class="nav-item nav-link d-md-none active" hidden id="logout_link" href="./login.html" onclick="clear_session()">Log out</a>
+        </div>
+        </div>
+        <a class="d-none d-sm-block" href="./login.html"><button id="login_btn" >Login</button></a>
+        <a class="d-none d-sm-block" href="./profile.html"><input class="d-none d-md-block" type="image" id="profile_icon" src="./images/Profile Picture.png" /></a>              
+    </nav>
+    <!-- End of Navbar Column -->
 
             <!-- Countdown Div-->
             <div class="container text-center" id="countdown">
@@ -165,14 +166,12 @@
 
                 <!-- Mood Line Graph-->
                 <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
-                <canvas id="chart" width="400" height="400"></canvas>
+                <canvas id="chart" width="400" height="300"></canvas>
                 <!-- End of Line Graph-->
 
             </div>
             <!-- End of Mood Box -->
 
-
-        </div>
     </div>
    
 </body>

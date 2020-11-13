@@ -91,17 +91,26 @@ function get_milestone(){
                     var description = milestone.description;
                     //console.log(count_down);
                     var ms_ID = milestone.ms_ID;
+                    console.log(window.location.pathname)
+                    if(window.location.pathname == "/WAD-Team22-Stayafloat/tracking.html"){
+                        console.log("hello")
+                        str+= `<div class="card">
+                                <div class="card-body" style="padding:0">
+                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+                                    <p class="card-text" style="color:black; font-size:large">${description}</p>
 
-                    str+= `<div class="card">
-                            <div class="card-body" style="padding:0">
-                                <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
-                                <p class="card-text" style="color:black; font-size:large">${description}</p>
-
-                                <button type="button" id="deleteBtn" class="btn btn-link btn-sm" onclick="remove_milestone(${ms_ID});">Delete</button>
-                                
-
-                            </div>
-                         </div>`;
+                                    <button type="button" id="deleteBtn" class="btn btn-link btn-sm" onclick="remove_milestone(${ms_ID});">Delete</button>
+                                    
+                                </div>
+                            </div>`;
+                    }else{
+                        str+= `<div class="card">
+                                <div class="card-body" style="padding:0">
+                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+                                    <p class="card-text" style="color:black; font-size:large">${description}</p>
+                                </div>
+                            </div>`;
+                    }
                 }
                 document.getElementById("milestone_cards").innerHTML = str;
                 //console.log(str)
@@ -236,6 +245,10 @@ function display_mood(){
 }
 
 function renderChart(data, labels){
+
+    var yLabels = {
+        1 : 'Unhappy', 2 : 'Worried', 3 : 'Sleepy', 4 : 'Contented',  5: 'Relaxed'
+    }
     
     var ctx = document.getElementById("chart").getContext('2d');
     console.log(data);
@@ -243,13 +256,22 @@ function renderChart(data, labels){
 
     var myChart = new Chart(ctx, {
         type: 'line',
+        axisX: {
+			labelFormatter: function (labels) {
+                return CanvasJS.formatDate( labels.value, "DD MMM");
+            }
+        },
         data: {
             labels: labels,
             datasets: [{
                 label:false,
                 data: data,
-                borderColor: "#102B72",
-                fill: false,
+                showLine:false,
+                fill:false,
+                pointBackgroundColor:"#102B72",
+                pointRadius: 15,
+                pointStyle:'circle'
+
             }],
         },
         
@@ -265,9 +287,9 @@ function renderChart(data, labels){
                     bottom: 50
                 }
             },
-            color: function(context) {
-                var index = context.dataIndex;
-                var value = context.dataset.data[index];
+            color: function(yLabels) {
+                var index = yLabels.dataIndex;
+                var value = yLabels.dataset.data[index];
                 return value < 0 ? 'red' :  // draw negative values in red
                     index % 2 ? 'blue' :    // else, alternate values in blue and green
                     'green';
@@ -275,9 +297,12 @@ function renderChart(data, labels){
             scales: {
                 yAxes: [{
                         ticks: {
-                            max: 5,
+                            max: 6,
                             min: 0,
-                            stepSize: 1
+                            stepSize: 1,
+                            callback: function(value, index, values) {
+                                return yLabels[value];
+                            }
                         }
                 }]
             }
