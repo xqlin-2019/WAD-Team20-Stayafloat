@@ -45,3 +45,44 @@ function get_Week() {
 
 }
 
+
+// function get_milestone() {
+//     var request = new XMLHttpRequest(); // Prep to make an API call
+//     var str = "";
+//     request.onreadystatechange = function() {
+//         if( this.readyState == 4 && this.status == 200 ) {
+//             var obj = JSON.parse(this.responseText); // JS JSON object
+//             milestones_arr = obj.milestones
+//             if (obj.retrieve_status == "successful"){
+//                 for(milestone of milestones_arr){
+//                     //console.log(milestone);
+//                     // console.log(milestone.date);
+//                     var date = milestone.date;
+//                     var count_down = countdown(date);
+//                     var description = milestone.description;
+//                     //console.log(count_down);
+
+//                     str+= `<div class="card">
+//                             <div class="card-body" style="padding:0">
+//                                 <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+//                                 <p class="card-text" style="color:black; font-size:large">${description}</p>
+
+//                             </div>
+//                          </div>`;
+//                 }
+//                 document.getElementById("milestone_cards").innerHTML = str;
+//                 //console.log(str)
+//             }
+            
+//         }
+//     }
+
+//     var email = sessionStorage.getItem('email');
+
+//     // console.log(description, date);
+//     var url = `./php/userAuth.php?action=getMilestones&email=${email}`;
+//     request.open("GET", url, true); // synchronous
+//     request.send();
+// }
+
+
