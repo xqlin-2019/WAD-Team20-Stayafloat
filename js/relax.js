@@ -78,14 +78,14 @@ function display_jokes(xml){
     var start = true;
     var response_json = JSON.parse(xml.responseText);
     console.log(response_json['jokes']);
-    var str_start = `<div class="w3-container w3-center w3-animate-zoom" style = "padding:0px"><div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval = "10000">
+    var str_start = `<div class="w3-container w3-center w3-animate-zoom" style = "padding:0px ; height: 150px;"><div id="carousel_of_jokes" class="carousel slide" data-ride="carousel" data-interval = "10000">
                     <div class="carousel-inner">`;
 
-    var str_end = `</div><a class="carousel-control-prev" role="button" data-slide="prev" style = "margin:0px;">
+    var str_end = `</div><a class="carousel-control-prev" href="#carousel_of_jokes" role="button" data-slide="prev" style = "margin:0px;">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style = "margin:0px;">
+                        <a class="carousel-control-next" href="#carousel_of_jokes" role="button" data-slide="next" style = "margin:0px;">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                         </a>
@@ -103,7 +103,7 @@ function display_jokes(xml){
                 var joke = joke.setup + "<br>"+ joke.delivery;
             }
             if (start == true){
-                str_start += `<div class="carousel-item active mx-auto"><div class = "container" id = "each_joke">${joke}</div></div>`;
+                str_start += `<div class="carousel-item align-middle active mx-auto"><div class = "container align-middle"><span class = "align-middle" id = "each_joke">${joke}</span></div></div>`;
                 var start = false;
             } else {
                 str_start += `<div class="carousel-item mx-auto"><div class = "container" id = "each_joke">${joke}</div></div>`;

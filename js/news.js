@@ -84,18 +84,21 @@ function display(xml,query){
                 `
     var first = ``;
 
-
+    console.log(news);
     for (article of news){
 
 
         var description = JSON.stringify(article['description']);
 
-        if (description.includes(" ")){
+
             var image = article['urlToImage'];
             var title = article['title'];
             var description = article['description'];
             var more_info = article['url'];
-            
+
+            if (description == null){
+                description = " ";
+            }
 
             if (first_article == true){
                 first += `
@@ -128,7 +131,7 @@ function display(xml,query){
                 </div>
                 </div>`
 
-            }
+            
 
         }
         
