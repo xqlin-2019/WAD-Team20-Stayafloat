@@ -48,3 +48,10 @@
 .icon { 
     padding: 14px 20px 20px 20px; 
 } 
+
+#register_link {
+    margin: 0;
+    padding-top: 0;
+    color: #102B72;
+    text-decoration: underline;
+}
