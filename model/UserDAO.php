@@ -136,7 +136,7 @@
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
-            $sql = "select description, date from milestones where email= :email";
+            $sql = "select description, date, ms_ID from milestones where email= :email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -147,7 +147,8 @@
             //var_dump($row);
 
                $milestone = array("description" => $row         ["description"],
-                                "date" => $row["date"]);
+                                "date" => $row["date"],
+                                "ms_ID" => $row["ms_ID"]);
                 $milestones[] = $milestone;
             //var_dump($milestone);
 
@@ -155,6 +156,21 @@
             $stmt->closeCursor();
             $pdo = null;
             return $milestones;
+        }
+        function removeMilestones($email, $ms_ID){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "delete from milestones where email= :email and ms_ID= :ms_ID";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->bindParam(":ms_ID", $ms_ID, PDO::PARAM_INT);
+
+            $status = $stmt->execute();
+
+            $stmt->closeCursor();
+            $pdo = null;
+            return $status;
         }
     }
 ?>

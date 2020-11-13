@@ -32,6 +32,9 @@
         else if ($action == "getMilestones") {
             $result = getMilestones();
         }
+        else if ($action == "removeMilestones") {
+            $result = removeMilestones();
+        }
 
         // set response code - 200 OK
         http_response_code(200);
@@ -141,6 +144,22 @@
         else{
             return array("retrieve_status" => "fail","email" => $email);
         }
+    }
+
+    function removeMilestones(){
+        $email = $_GET["email"];
+        $ms_ID = $_GET["ms_ID"];
+        //console.log($email,$ms_ID);
+        $dao = new UserDAO();
+        $status = $dao->removeMilestones($email, $ms_ID);
+        if($status){
+            // var_dump($milestones);
+            return array("delete_status" => "successful","email" => $email);
+        }
+        else{
+            return array("delete_status" => "fail","email" => $email);
+        }
+        console.log($status);
     }
 
 ?>

@@ -4,10 +4,38 @@ body{
 
 .card{
   font-family: Arial, Helvetica, sans-serif;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .card-title{
   font-weight: bolder;
 
+}
+
+#addBtn, #addMoodBtn{
+  float:right;
+  background-color: whitesmoke;
+  color: black;
+  outline-color: black;
+}
+
+#login_btn {
+  width: 135px;
+  height: 46px;
+  background: #102B72;
+  border: 2px solid #1C1C1C;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+
+#deleteBtn{
+  float:right; 
+  margin: 0 10px 8px;
+  color: firebrick;
 }

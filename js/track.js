@@ -73,39 +73,46 @@ function countdown(date){
 
 }
 
+
 function get_milestone(){
-    login_check();
-    process_login();
 
     var request = new XMLHttpRequest(); // Prep to make an API call
     var str = "";
     request.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ) {
             var obj = JSON.parse(this.responseText); // JS JSON object
-            console.log(obj)
+            //console.log(obj)
             milestones_arr = obj.milestones
             if (obj.retrieve_status == "successful"){
-                console.log("hello");
                 for(milestone of milestones_arr){
-                    console.log(milestone);
+                    //console.log(milestone);
                     // console.log(milestone.date);
                     var date = milestone.date;
                     var count_down = countdown(date);
                     var description = milestone.description;
                     //console.log(count_down);
-                    
+                    var ms_ID = milestone.ms_ID;
 
-                    str+= `<div class="card" style="max-width: 18rem; min-height:10rem;">
-                        <div class="card-body text-white" style="padding:0">
-                        <h1 class="card-title text-uppercase" style=" background-color: #102B72; padding:10px; ">${count_down} DAYS LEFT</h1>
-                        <p class="card-text" style="color:black">${description}</p>
-                        </div>
-                    </div>`;
+                    console.log(ms_ID);
+
+                    str+= `<div class="card">
+                            <div class="card-body" style="padding:0">
+                                <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+                                <p class="card-text" style="color:black; font-size:large">${description}</p>
+
+                                <button type="button" id="deleteBtn" class="btn btn-link btn-sm" onclick="remove_milestone(${ms_ID});">Delete</button>
+                                
+
+                            </div>
+                         </div>`;
                 }
                 document.getElementById("milestone_cards").innerHTML = str;
+                //console.log(str)
             }
+            
         }
     }
+
     var email = sessionStorage.getItem('email');
 
     // console.log(description, date);
@@ -115,27 +122,92 @@ function get_milestone(){
 }
 
 function display_mood(){
-    var chart = new CanvasJS.Chart("chartContainer",
-    {	
-        axisX:{
-        valueFormatString: "DD MMM",
-        },
-        axisY:{
-        interval: 1
-        },
-        data: [
-        {        
-            type: "splineArea",
-            dataPoints: [
-            {x: new Date(2018, 11, 24), y: 1},
-            {x: new Date(2018, 11, 25), y: 2},     
-            {x: new Date(2018, 11, 27), y: 2},     
-            ]
-        }             
-        ]
-    });
+    // var chart = new CanvasJS.Chart("chartContainer",
+    // {	
+    //     axisX:{
+    //     valueFormatString: "DD MMM",
+    //     },
+    //     axisY:{
+    //     interval: 1
+    //     },
+    //     data: [
+    //     {        
+    //         type: "splineArea",
+    //         dataPoints: [
+    //         {x: new Date(2018, 11, 24), y: 1},
+    //         {x: new Date(2018, 11, 25), y: 2},     
+    //         {x: new Date(2018, 11, 27), y: 2},     
+    //         ]
+    //     }             
+    //     ]
+    // });
 
-    chart.render();
+    // chart.render();
+
+
+    
 
 }
 
+function remove_milestone(ms_ID){
+
+    var request = new XMLHttpRequest(); // Prep to make an API call
+
+    request.onreadystatechange = function() {
+        if( this.readyState == 4 && this.status == 200 ) {
+            var obj = JSON.parse(this.responseText); // JS JSON object
+
+            if (obj.delete_status == "successful"){
+                location.reload();
+            }
+            else {
+                document.getElementById("delete_status").innerHTML = "<span style='color: red;'>An error occured</span>";         
+            }
+            //console.log("hello");
+
+        }
+
+    }
+    var email = sessionStorage.getItem('email');
+
+    var url = `./php/userAuth.php?action=removeMilestones&email=${email}&ms_ID=${ms_ID}`;
+    //console.log(ms_ID);
+
+
+
+    request.open("GET", url, true); // synchronous
+    request.send();
+}
+
+function add_mood(){
+
+    var request = new XMLHttpRequest(); // Prep to make an API call
+
+    request.onreadystatechange = function() {
+        if( this.readyState == 4 && this.status == 200 ) {
+            var obj = JSON.parse(this.responseText); // JS JSON object
+            //console.log(obj)
+            if (obj.update_status == "successful"){
+                document.getElementById("update_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Milestone Added!</span>";
+            }
+            else {
+                document.getElementById("update_status").innerHTML = "<span style='color: red;'>An error occured</span>";         
+            }
+        }
+    }
+    var email = sessionStorage.getItem('email');
+    var mood = document.getElementById("mood").value;
+    var date = new Date()
+
+    if(mood==""){
+        document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>Please fill in the inpute!</span>";         
+        console.log("error");
+        return;
+    }else{
+        var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}`;
+
+    }
+
+    request.open("GET", url, true); // synchronous
+    request.send();
+}
