@@ -38,6 +38,9 @@
         else if ($action == "addMood") {
             $result = addMood();
         }
+        else if ($action == "getMood") {
+            $result = getMood();
+        }
 
         // set response code - 200 OK
         http_response_code(200);
@@ -180,4 +183,15 @@
         }
     }
 
+    function getMood(){
+        $email = $_GET["email"];
+        $dao = new UserDAO();
+        $moods = $dao->getMood($email);
+        if($moods){ 
+            return array("moodRetrieve_status" => "successful","email" => $email, "moods" => $moods);
+        }
+        else{
+            return array("moodRetrieve_status" => "fail","email" => $email);
+        }
+    }
 ?>

@@ -135,15 +135,15 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label" style="font-size: large;">How are you feeling today?</label><br>
-                                        <input style="vertical-align: middle" type="radio" id="contented" name="mood" value="C">
+                                        <input style="vertical-align: middle" type="radio" id="contented" name="mood" value="5">
                                         <label for="contented">Contented</label><br>
-                                        <input style="vertical-align: middle" type="radio" id="relaxed" name="mood" value="R">
+                                        <input style="vertical-align: middle" type="radio" id="relaxed" name="mood" value="4">
                                         <label for="relaxed">Relaxed</label><br>
-                                        <input style="vertical-align: middle" type="radio" id="sleepy" name="mood" value="S">
+                                        <input style="vertical-align: middle" type="radio" id="sleepy" name="mood" value="3">
                                         <label for="sleepy">Sleepy</label><br>
-                                        <input style="vertical-align: middle" type="radio" id="worried" name="mood" value="W">
+                                        <input style="vertical-align: middle" type="radio" id="worried" name="mood" value="2">
                                         <label for="worried">Worried</label><br>
-                                        <input style="vertical-align: middle" type="radio" id="unhappy" name="mood" value="U">
+                                        <input style="vertical-align: middle" type="radio" id="unhappy" name="mood" value="1">
                                         <label for="unhappy">Unhappy</label>
                                     </div>
                                     
@@ -161,6 +161,12 @@
                     </div>
                 </div>
                 <!-- End of Milestone Modal-->
+
+
+                <!-- Mood Line Graph-->
+                <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+                <canvas id="chart" width="400" height="400"></canvas>
+                <!-- End of Line Graph-->
 
             </div>
             <!-- End of Mood Box -->

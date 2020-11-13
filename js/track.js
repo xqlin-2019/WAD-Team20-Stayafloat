@@ -75,7 +75,6 @@ function countdown(date){
 
 
 function get_milestone(){
-
     var request = new XMLHttpRequest(); // Prep to make an API call
     var str = "";
     request.onreadystatechange = function() {
@@ -92,8 +91,6 @@ function get_milestone(){
                     var description = milestone.description;
                     //console.log(count_down);
                     var ms_ID = milestone.ms_ID;
-
-                    console.log(ms_ID);
 
                     str+= `<div class="card">
                             <div class="card-body" style="padding:0">
@@ -119,34 +116,6 @@ function get_milestone(){
     var url = `./php/userAuth.php?action=getMilestones&email=${email}`;
     request.open("GET", url, true); // synchronous
     request.send();
-}
-
-function display_mood(){
-    // var chart = new CanvasJS.Chart("chartContainer",
-    // {	
-    //     axisX:{
-    //     valueFormatString: "DD MMM",
-    //     },
-    //     axisY:{
-    //     interval: 1
-    //     },
-    //     data: [
-    //     {        
-    //         type: "splineArea",
-    //         dataPoints: [
-    //         {x: new Date(2018, 11, 24), y: 1},
-    //         {x: new Date(2018, 11, 25), y: 2},     
-    //         {x: new Date(2018, 11, 27), y: 2},     
-    //         ]
-    //     }             
-    //     ]
-    // });
-
-    // chart.render();
-
-
-    
-
 }
 
 function remove_milestone(ms_ID){
@@ -225,4 +194,64 @@ function add_mood(){
 
     request.open("GET", url, true); // synchronous
     request.send();
+}
+
+function display_mood(){
+    var request = new XMLHttpRequest(); // Prep to make an API call
+    var str = "";
+    var data =[];
+    var label=[];
+    request.onreadystatechange = function() {
+        if( this.readyState == 4 && this.status == 200 ) {
+            var obj = JSON.parse(this.responseText); // JS JSON object
+            mood_arr = obj.moods;
+            if (obj.moodRetrieve_status == "successful"){
+            
+                  
+                    for(mood of mood_arr){
+
+                    mood_index = mood["mood"];
+                    console.log(mood_index)
+                    data.push(mood_index);
+
+                    date = mood.date;
+                    label_date = date.slice(5)
+                    label.push(label_date);
+
+                }
+            }
+            
+        }
+    }
+
+    var email = sessionStorage.getItem('email');
+
+
+    console.log(data, label);
+    var url = `./php/userAuth.php?action=getMood&email=${email}`;
+    request.open("GET", url, true); // synchronous
+    request.send();
+
+    // labels =  ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+    
+    renderChart(data, label);
+
+}
+
+function renderChart(data, labels){
+    var ctx = document.getElementById("chart").getContext('2d');
+    console.log(data);
+    console.log(labels);
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'This week',
+                data: data,
+            }]
+        },
+     });
 }

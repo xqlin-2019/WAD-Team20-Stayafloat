@@ -144,13 +144,11 @@
             $stmt->execute();
             $milestones = [];
             while($row = $stmt->fetch()){
-            //var_dump($row);
 
-               $milestone = array("description" => $row         ["description"],
+               $milestone = array("description" => $row["description"],
                                 "date" => $row["date"],
                                 "ms_ID" => $row["ms_ID"]);
                 $milestones[] = $milestone;
-            //var_dump($milestone);
 
             }
             $stmt->closeCursor();
@@ -190,6 +188,30 @@
             $stmt->closeCursor();
             $pdo = null;
             return $status;
+        }
+
+        function getMood($email){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "select mood, date, mood_ID from moods where email= :email";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            
+            $stmt->execute();
+            $moods = [];
+            while($row = $stmt->fetch()){ 
+
+               $mood = array("mood" => $row["mood"],
+                                "date" => $row["date"],
+                                "mood_ID" => $row["mood_ID"]);
+                $moods[] = $mood;
+
+            }
+            $stmt->closeCursor();
+            $pdo = null;
+            return $moods;
         }
     }
 ?>
