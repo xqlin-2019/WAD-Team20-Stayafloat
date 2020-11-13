@@ -196,8 +196,7 @@ function process_login(){
             preference_str += `${each.value},`;
         }
     }
-    //console.log(preference_str);
-    return preference_str.slice(0, -1);;
+    return preference_str.slice(0, -1);
 }
 
 function display_preference() {
