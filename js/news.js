@@ -10,7 +10,6 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
 var formatted_date = dd + '/' + mm + '/' + yyyy;
-var updated_date = `<h6> Updated ${formatted_date}</h6>`;
 
 
 var category_colours = {
@@ -145,5 +144,3 @@ function display(xml,query){
     document.getElementById('first').innerHTML += first;
 
 }
-
-// document.getElementById('date').innerHTML += updated_date;

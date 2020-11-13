@@ -63,7 +63,7 @@ function display_jokes(xml){
     var start = true;
     var response_json = JSON.parse(xml.responseText);
     console.log(response_json['jokes']);
-    var str_start = `<div class="container w3-animate-zoom" style = "padding:0px ;"><div id="carousel_of_jokes" class="carousel slide" data-ride="carousel" data-interval = "3000">
+    var str_start = `<div class="container w3-animate-zoom" style = "padding:0px ;"><div id="carousel_of_jokes" class="carousel slide" data-ride="carousel" data-interval = "10000">
                     <div class="carousel-inner" role="listbox">`;
 
     var str_end = `</div><a class="carousel-control-prev" href="#carousel_of_jokes" role="button" data-slide="prev" style = "margin:0px;">
