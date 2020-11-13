@@ -35,6 +35,9 @@
         else if ($action == "removeMilestones") {
             $result = removeMilestones();
         }
+        else if ($action == "addMood") {
+            $result = addMood();
+        }
 
         // set response code - 200 OK
         http_response_code(200);
@@ -160,6 +163,21 @@
             return array("delete_status" => "fail","email" => $email);
         }
         console.log($status);
+    }
+
+    function addMood() {
+        $email = $_GET["email"];
+        $mood = $_GET["mood"];
+        $date = $_GET["date"];
+
+        $dao = new UserDAO();
+        $status = $dao->addMood($email,$mood, $date);
+        if($status){
+            return array("update_mood_status" => "successful","email" => $email);
+        }
+        else{
+        return array("update_mood_status" => "fail","email" => $email);
+        }
     }
 
 ?>

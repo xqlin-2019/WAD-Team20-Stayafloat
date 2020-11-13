@@ -172,5 +172,24 @@
             $pdo = null;
             return $status;
         }
+
+        function addMood($email,$mood, $date){
+            
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+
+            $sql = "insert into moods (email, mood, date) values (:email, :mood, :date)";
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->bindParam(":mood", $mood, PDO::PARAM_STR);
+            $stmt->bindParam(":date", $date, PDO::PARAM_STR);
+
+            $status = $stmt->execute();
+
+            $stmt->closeCursor();
+            $pdo = null;
+            return $status;
+        }
     }
 ?>

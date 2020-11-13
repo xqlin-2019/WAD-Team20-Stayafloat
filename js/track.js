@@ -186,27 +186,42 @@ function add_mood(){
     request.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ) {
             var obj = JSON.parse(this.responseText); // JS JSON object
-            //console.log(obj)
-            if (obj.update_status == "successful"){
-                document.getElementById("update_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Milestone Added!</span>";
+            console.log(obj)
+            if (obj.update_mood_status == "successful"){
+                document.getElementById("update_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Mood Added!</span>";
             }
             else {
                 document.getElementById("update_status").innerHTML = "<span style='color: red;'>An error occured</span>";         
             }
         }
     }
+
+
+    var radios = document.getElementsByName("mood");
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            var mood = radios[i].value;
+          break;
+        }
+    }
+
     var email = sessionStorage.getItem('email');
-    var mood = document.getElementById("mood").value;
-    var date = new Date()
+    var today = new Date();
+    var date = today.toISOString().substring(0, 10);
+
 
     if(mood==""){
-        document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>Please fill in the inpute!</span>";         
+        document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>Please fill in the input!</span>";         
         console.log("error");
         return;
     }else{
         var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}`;
 
     }
+    console.log(radios, email,mood, date)
+    console.log(url)
+
 
     request.open("GET", url, true); // synchronous
     request.send();

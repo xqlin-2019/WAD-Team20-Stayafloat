@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 DROP TABLE IF EXISTS `milestones`;
 CREATE TABLE IF NOT EXISTS `milestones` (
-  `ms_ID` int NOT NULL,
+  `ms_ID` int NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
   `description` varchar(256) NOT NULL,
   `date` DATE NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `milestones` (
 
 DROP TABLE IF EXISTS `moods`;
 CREATE TABLE IF NOT EXISTS `moods` (
-  `mood_ID` int NOT NULL,
+  `mood_ID` int NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
   `mood` char(1) NOT NULL,
   `date` DATE NOT NULL,
