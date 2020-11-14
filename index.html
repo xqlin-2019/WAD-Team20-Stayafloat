@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="js/track.js"></script>
     <script src="./js/rss.js"></script>
     <script src="./js/homepage.js"></script>
     <script src = "./js/userAuth.js"></script>
@@ -75,7 +74,7 @@
         }
     </style>
 </head>
-<body onload="login_check_button();get_Week();display_rss();get_milestone()">
+<body onload="login_check_button();get_Week();display_rss();display_milestone()">
     <!-- Navbar Column -->
     <div id="navbar_component"></div>
     <!-- End of Navbar Column -->
@@ -90,7 +89,8 @@
     <!-- End of ProgressBar -->
 
     <!-- Milestone_cards -->
-    <div id="milestone_cards">
+    <div class="container text-center">
+    <div class="row" id="milestone_cards" style="margin:15px;"></div>
 
     </div>
     <!-- End of milestone_cards -->

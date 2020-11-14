@@ -57,6 +57,7 @@ function get_milestone(){
             //console.log(obj)
             milestones_arr = obj.milestones
             if (obj.retrieve_status == "successful"){
+                milestones_arr.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
                 for(milestone of milestones_arr){
                     //console.log(milestone);
                     // console.log(milestone.date);
@@ -66,16 +67,17 @@ function get_milestone(){
                     //console.log(count_down);
                     var ms_ID = milestone.ms_ID;
 
-                    str+= `<div class="card">
-                            <div class="card-body" style="padding:0">
-                                <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
-                                <p class="card-text" style="color:black; font-size:large">${description}</p>
+                    str+= `
+                        <div class="col-xl-4">
+                            <div class="card">
+                                <div class="card-body" style="padding:0">
+                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+                                    <p class="card-text" style="color:black; font-size:large">${description}</p>
 
-                                <button type="button" id="deleteBtn" class="btn btn-link btn-sm" onclick="remove_milestone(${ms_ID});">Delete</button>
-                                
-
+                                    <button type="button" id="deleteBtn" class="btn btn-link btn-sm" onclick="remove_milestone(${ms_ID});">Delete</button>
+                                </div>
                             </div>
-                         </div>`;
+                        </div>`;
                 }
                 document.getElementById("milestone_cards").innerHTML = str;
                 //console.log(str)
