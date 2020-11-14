@@ -14,7 +14,7 @@
   <title>Track</title>
 
   <style>
-    body, #modal{
+    body, .modal{
     font-family: Libre Baskerville;
     }
   </style>
@@ -86,7 +86,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload();">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="add_milestone()" >Save changes</button>
+                        <button type="button" class="btn btn-primary" onclick="add_milestone()" >Add</button>
                     </div>
 
                     <div id="update_status"></div>
@@ -98,7 +98,7 @@
 
         <!-- Cards -->
         <div class="container">
-        <div class="row" id="milestone_cards" ></div>
+            <div class="row" id="milestone_cards" ></div>
 
         </div>
         <!-- End of CountDown Box -->
@@ -123,7 +123,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="add_mood">Add a Milestone</h5>
+                        <h5 class="modal-title" id="add_mood">Add Mood</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="location.reload();">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -150,7 +150,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload();">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="add_mood()" >Save changes</button>
+                        <button type="button" class="btn btn-primary" onclick="add_mood()" >Add</button>
                     </div>
 
                     <div id="update_mood_status"></div>
@@ -161,13 +161,14 @@
         <!-- End of Milestone Modal-->
         <!-- Mood Line Graph-->
         
-        <div class="chart-container" style="position: relative;">
-            <canvas id="chart" style="max-height:450px" ></canvas>
+        
+
+        <div class="chart-container"></div>
+        <canvas id="chart" height=350px; style="max-height:450px;" ></canvas>
         </div>
-
-
         <!-- End of Line Graph-->
     </div>
+    
     <!-- End of Mood Box -->
     
 </body>
