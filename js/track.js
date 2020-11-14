@@ -198,12 +198,16 @@ function display_mood(){
             
                     for(mood of mood_arr){
 
-                    mood_index = mood["mood"];
-                    data.push(mood_index);
+                    // mood_index = mood["mood"];
+                    // data.push(mood_index);
 
-                    date = new Date(mood.date);
-                    label_date = (date.toString()).slice(4,10)
-                    label.push(label_date);
+                    date = (mood.date);
+                    // label_date = (date.toString()).slice(4,10)
+                    label.push(date);
+                    
+                    var point ={x:mood.date, y:mood.mood};
+                    data.push(point);
+                    
 
                 }
             }
@@ -218,17 +222,21 @@ function display_mood(){
     request.send();
 
     
-    renderChart(data, label);
+    renderChart(data,label);
 
 }
 
-function renderChart(data, labels){
-    console.log(labels);
+function renderChart(data, label){
+    console.log(label);
 
     var yLabels = {
         1 : 'Unhappy', 2 : 'Worried', 3 : 'Sleepy', 4 : 'Contented',  5: 'Relaxed'
     }
     
+    // var data =label;
+    // for(var data_pint in label){
+    //     console.log(data_pint)
+    // }
     var ctx = document.getElementById("chart").getContext('2d');
     // console.log(data);
 
@@ -236,7 +244,7 @@ function renderChart(data, labels){
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
+            labels: label,
             datasets: [{
                 label:false,
                 data: data,
@@ -244,7 +252,7 @@ function renderChart(data, labels){
                 fill:false,
                 pointBackgroundColor: function(yLabels) {
                     var index = yLabels.dataIndex;
-                    var value = yLabels.dataset.data[index];
+                    var value = yLabels.dataset.data[index].y;
                     return value == 1 ? 'red' :  // draw negative values in red
                         value == 2 ? 'orange' :    // else, alternate values in blue and green
                         value == 3 ? 'grey':
@@ -259,6 +267,7 @@ function renderChart(data, labels){
         
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             events: [],
             legend:{
                 display:false
@@ -272,8 +281,20 @@ function renderChart(data, labels){
                 }
             },
             scales: {
-                xAxes:[{
-                    type: 'category',
+                xAxes: [{
+                    type: 'time',
+                    time:
+                    {
+                        unit: 'day',
+                        // parser:'MM',
+                        displayFormats: { month: 'MMM DD' },
+                        unitStepSize: 1,
+                    },
+                    ticks:{
+                        source: 'label',
+                        autoSkip: true,
+                        maxTicksLimit: 7
+                    }
                 }],
                 yAxes: [{
                     ticks: {
