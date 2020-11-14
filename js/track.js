@@ -1,29 +1,3 @@
-function login_check() {
-    let status = sessionStorage.getItem('login_status');
-    if (status != 'successful'){
-        window.location.href = "./login.html";
-    }
-}
-
-function clear_session() {
-    sessionStorage.clear();
-    window.location.href = "../login.html?";
-}
-
-function process_login(){
-    var request = new XMLHttpRequest(); 
-
-    request.onreadystatechange = function() {
-        if( this.readyState == 4 && this.status == 200 ) {
-            var obj = JSON.parse(this.responseText); 
-            if (obj.login_status == "successful"){
-                sessionStorage.setItem('login_status', 'successful')
-                sessionStorage.setItem('email', obj.email);      
-            }
-        }
-    }
-  }
-
 function add_milestone(){
 
     var request = new XMLHttpRequest(); // Prep to make an API call

@@ -33,7 +33,7 @@ function get_Week() {
     prog_str = ''
 
     prog_str += ` 
-    <h1 style="text-align: left; margin-left: 131px; ">Week ${week}</h1>
+    <h1 style="text-align: center; ">Week ${week}</h1>
     <div class="progress p_bar" style="height: 25px;" >
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
         style="width: ${progressvalue} " aria-valuenow="${week}" aria-valuemin="1" aria-valuemax="15">${progressvalue}</div>
