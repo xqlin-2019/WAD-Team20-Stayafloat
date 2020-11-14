@@ -75,6 +75,7 @@ function clear_session() {
 
 // User Login
 function process_login(){
+    document.getElementById("login_status").innerHTML = "";
     var request = new XMLHttpRequest(); 
 
     request.onreadystatechange = function() {
@@ -89,6 +90,9 @@ function process_login(){
                 sessionStorage.setItem('faculty', obj.profile.faculty)
                 sessionStorage.setItem('preference', obj.profile.preference)
                 window.location.href = "./Profile.html?";          
+            }
+            else{
+                document.getElementById("login_status").innerHTML = `<span style='color: red;'>Invalid login information, please check again!</span></br>`;
             }
         }
     }
