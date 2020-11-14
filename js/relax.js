@@ -154,7 +154,7 @@ function display_list(xml){
         var playlist_id = list.id.playlistId;
         console.log(playlist_id);
 
-        var embed = `<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=${playlist_id}"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+        var embed = `<div class="embed-responsive embed-responsive-16by9" style="margin-bottom:25px"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=${playlist_id}"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
 
         str += embed;
     }
