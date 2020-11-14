@@ -161,11 +161,24 @@ function add_mood(){
         console.log("error");
         return;
     }else{
+        if (mood == 1){
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:red'>Cheer Up Pal!! Things will get better!!<br><a href='home.html' class='text-center'>Go read some articles and relax!</a></div>";
+        }else if (mood == 2){
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:orange'> Don't Worry Pal!! Tough Time Don't Last, But Tough People Do! Push Through! <br> <a href='relax.html' class='text-center'>Relax with some music!</a></div>";
+        }else if (mood == 3){
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:grey'>WAKE UP WAKE UP!<br><a href='tracking.html' class='text-center'> No time already, look at all your countdowns!</a></div>";
+        }else if (mood == 4){
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:goldenrod'> Stay Happy, My Friend!<br><a href='news.html' class='text-center'>Catch up with some news!</a></div>";
+        }else if (mood == 5){
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:#add8e6'>Good job! You deserve a break!!<br><a href='relax.html' class='text-center'>Go watch some videos!</a></div>";
+        };
         var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}`;
 
     }
-    console.log(radios, email,mood, date)
-    console.log(url)
+
+
+    //console.log(radios, email,mood, date)
+    //console.log(url)
 
 
     request.open("GET", url, true); // synchronous
