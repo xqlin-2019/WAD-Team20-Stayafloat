@@ -12,12 +12,6 @@ body{
 
 }
 
-.btn-primary{
-  background: #102B72;
-  border: 2px solid #1C1C1C;
-
-}
-
 #addBtn, #addMoodBtn{
   float:right;
   background-color: whitesmoke;

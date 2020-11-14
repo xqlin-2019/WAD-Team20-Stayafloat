@@ -65,9 +65,9 @@ function get_milestone(){
                     var description = milestone.description;
                     //console.log(count_down);
                     var ms_ID = milestone.ms_ID;
-                    //console.log(window.location.pathname)
+                    console.log(window.location.pathname)
                     if(window.location.pathname == "/WAD-Team22-Stayafloat/tracking.html"){
-                        //console.log("hello")
+                        console.log("hello")
                         str+= `<div class="card">
                                 <div class="card-body" style="padding:0">
                                     <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
@@ -140,10 +140,10 @@ function add_mood(){
             var obj = JSON.parse(this.responseText); // JS JSON object
             console.log(obj)
             if (obj.update_mood_status == "successful"){
-                document.getElementById("update_mood_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Mood Added!</span>";
+                document.getElementById("update_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Mood Added!</span>";
             }
             else {
-                document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>An error occured</span>";         
+                document.getElementById("update_status").innerHTML = "<span style='color: red;'>An error occured</span>";         
             }
         }
     }
@@ -163,11 +163,11 @@ function add_mood(){
     var date = today.toISOString().substring(0, 10);
 
 
-    if(mood===undefined){
+    if(mood==""){
         document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>Please fill in the input!</span>";         
+        console.log("error");
         return;
     }else{
-        document.getElementById("update_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Mood Added!</span>";
         var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}`;
 
     }
@@ -183,7 +183,7 @@ function display_mood(){
     var request = new XMLHttpRequest(); // Prep to make an API call
     var str = "";
     var data =[];
-    var labels=[];
+    var label=[];
     request.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ) {
             var obj = JSON.parse(this.responseText); // JS JSON object
@@ -195,10 +195,9 @@ function display_mood(){
                     mood_index = mood["mood"];
                     data.push(mood_index);
 
-                    date = (new Date(mood.date)).toString();
-                    
-                    label_date = date.slice(4,10);
-                    labels.push(label_date);
+                    date = mood.date;
+                    label_date = date.slice(5)
+                    label.push(label_date);
 
                 }
             }
@@ -206,33 +205,36 @@ function display_mood(){
         }
     }
 
-     console.log(data,labels);
-
-
     var email = sessionStorage.getItem('email');
 
     var url = `./php/userAuth.php?action=getMood&email=${email}`;
     request.open("GET", url, true); // synchronous
     request.send();
-    
-    renderChart(data, labels);
 
+    // labels =  ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+    
+    renderChart(data, label);
 
 }
 
 function renderChart(data, labels){
-    console.log(labels);
 
     var yLabels = {
         1 : 'Unhappy', 2 : 'Worried', 3 : 'Sleepy', 4 : 'Contented',  5: 'Relaxed'
     }
     
     var ctx = document.getElementById("chart").getContext('2d');
-    // console.log(data);
-
+    console.log(data);
+    console.log(labels);
 
     var myChart = new Chart(ctx, {
         type: 'line',
+        axisX: {
+			labelFormatter: function (labels) {
+                return CanvasJS.formatDate( labels.value, "DD MMM");
+            }
+        },
         data: {
             labels: labels,
             datasets: [{
@@ -240,24 +242,14 @@ function renderChart(data, labels){
                 data: data,
                 showLine:false,
                 fill:false,
-                pointBackgroundColor: function(yLabels) {
-                    var index = yLabels.dataIndex;
-                    var value = yLabels.dataset.data[index];
-                    return value == 1 ? 'red' :  // draw negative values in red
-                        value == 2 ? 'orange' :    // else, alternate values in blue and green
-                        value == 3 ? 'grey':
-                        value == 4 ? 'yellow':
-                        "#add8e6";
-                },
-                pointRadius: 6,
+                pointBackgroundColor:"#102B72",
+                pointRadius: 15,
                 pointStyle:'circle'
 
             }],
         },
         
         options: {
-            responsive: true,
-            events: [],
             legend:{
                 display:false
             },
@@ -269,20 +261,26 @@ function renderChart(data, labels){
                     bottom: 50
                 }
             },
+            color: function(yLabels) {
+                var index = yLabels.dataIndex;
+                var value = yLabels.dataset.data[index];
+                return value < 0 ? 'red' :  // draw negative values in red
+                    index % 2 ? 'blue' :    // else, alternate values in blue and green
+                    'green';
+            },
             scales: {
                 yAxes: [{
-                    ticks: {
-                        max: 6,
-                        min: 0,
-                        stepSize: 1,
-                        callback: function(value, index, values) {
-                            return yLabels[value];
+                        ticks: {
+                            max: 6,
+                            min: 0,
+                            stepSize: 1,
+                            callback: function(value, index, values) {
+                                return yLabels[value];
+                            }
                         }
-                    }
                 }]
             }
         },
         
      });
 }
-
