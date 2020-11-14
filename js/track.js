@@ -212,10 +212,15 @@ function display_mood(){
 }
 
 function renderChart(data, labels){
+    console.log(labels);
+
+    var yLabels = {
+        1 : 'Unhappy', 2 : 'Worried', 3 : 'Sleepy', 4 : 'Contented',  5: 'Relaxed'
+    }
     
     var ctx = document.getElementById("chart").getContext('2d');
-    console.log(data);
-    console.log(labels);
+    // console.log(data);
+
 
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -224,12 +229,26 @@ function renderChart(data, labels){
             datasets: [{
                 label:false,
                 data: data,
-                borderColor: "#102B72",
-                fill: false,
+                showLine:false,
+                fill:false,
+                pointBackgroundColor: function(yLabels) {
+                    var index = yLabels.dataIndex;
+                    var value = yLabels.dataset.data[index];
+                    return value == 1 ? 'red' :  // draw negative values in red
+                        value == 2 ? 'orange' :    // else, alternate values in blue and green
+                        value == 3 ? 'grey':
+                        value == 4 ? 'yellow':
+                        "#add8e6";
+                },
+                pointRadius:10,
+                pointStyle:'circle'
+
             }],
         },
         
         options: {
+            responsive: true,
+            events: [],
             legend:{
                 display:false
             },
@@ -241,20 +260,16 @@ function renderChart(data, labels){
                     bottom: 50
                 }
             },
-            color: function(context) {
-                var index = context.dataIndex;
-                var value = context.dataset.data[index];
-                return value < 0 ? 'red' :  // draw negative values in red
-                    index % 2 ? 'blue' :    // else, alternate values in blue and green
-                    'green';
-            },
             scales: {
                 yAxes: [{
-                        ticks: {
-                            max: 5,
-                            min: 0,
-                            stepSize: 1
+                    ticks: {
+                        max: 6,
+                        min: 0,
+                        stepSize: 1,
+                        callback: function(value, index, values) {
+                            return yLabels[value];
                         }
+                    }
                 }]
             }
         },
