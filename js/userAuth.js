@@ -10,20 +10,60 @@ function login_check_button() {
     let status = sessionStorage.getItem('login_status');
     if (status != 'successful'){
         
-        document.getElementById("login_link").hidden = false;
-        document.getElementById("login_btn").hidden = false;
-
-        document.getElementById("tracking_link").hidden = true;
-        document.getElementById("logout_link").hidden = true;
-        document.getElementById("profile_icon").setAttribute("type","hidden")
+        document.getElementById("navbar_component").innerHTML = `
+        <!-- Navbar Column -->
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand text-center" href="#">
+                    <img src="./images/lifebuoy 1.png" width="48" height="48" class="d-inline-block align-top" alt="lifebuoy" loading="lazy">
+                    <label class="d-block"> Stay Afloat</label>
+                </a>  
+        
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="myMenu">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="./index.html">Home</a>
+                    <a class="nav-item nav-link active" href="./relax.html">Relax</a>
+                    <a class="nav-item nav-link active" href="./news.html">News</a>
+                    <a class="nav-item nav-link d-md-none active" id="login_link" href="./login.html" >Login</a>
+                </div>
+                </div>
+                <a class="d-none d-sm-block" href="./login.html"><button id="navbar_login_btn" >Login</button></a>
+            </nav>
+            <!-- End of Navbar Column -->
+        `;
     }
     else {
-        document.getElementById("login_link").hidden = true;
-        document.getElementById("login_btn").hidden = true;
-
-        document.getElementById("tracking_link").hidden = false;
-        document.getElementById("logout_link").hidden = false;
-        document.getElementById("profile_icon").setAttribute("type","image")
+        document.getElementById("navbar_component").innerHTML = `
+        <!-- Navbar Column -->
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand text-center" href="#">
+                    <img src="./images/lifebuoy 1.png" width="48" height="48" class="d-inline-block align-top" alt="lifebuoy" loading="lazy">
+                    <label class="d-block"> Stay Afloat</label>
+                </a>  
+        
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="myMenu">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="./index.html">Home</a>
+                    <a class="nav-item nav-link active" href="./relax.html">Relax</a>
+                    <a class="nav-item nav-link active" href="./news.html">News</a>
+                    <a class="nav-item nav-link active" id="tracking_link" href="tracking.html">Track</a>
+                    <a class="nav-item nav-link d-md-none active" href="./Profile.html">My Profile</a>
+                    <a class="nav-item nav-link d-md-none active" href="./changepassword.html">Change Password</a>
+                    <a class="nav-item nav-link d-md-none active" href="/newspreference.html">News Preference</a>
+                    <a class="nav-item nav-link d-md-none active" id="logout_link" href="./login.html" onclick="clear_session()">Log out</a>
+                </div>
+                </div>
+                <a class="d-none d-sm-block" href="./profile.html"><input class="d-none d-md-block" type="image" id="profile_icon" src="./images/Profile Picture.png" /></a>              
+            </nav>
+            <!-- End of Navbar Column -->
+        `;
     }
 }
 
