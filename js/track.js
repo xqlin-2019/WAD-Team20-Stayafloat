@@ -68,7 +68,7 @@ function get_milestone(){
                     var ms_ID = milestone.ms_ID;
 
                     str+= `
-                        <div class="col-xl-4">
+                        <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body" style="padding:0">
                                     <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>

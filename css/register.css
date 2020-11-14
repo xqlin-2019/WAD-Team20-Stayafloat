@@ -60,3 +60,9 @@
     text-align: left;
   }
 
+  #login_link {
+    margin: 0;
+    padding-top: 0;
+    color: #102B72;
+    text-decoration: underline;
+}
