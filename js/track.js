@@ -188,8 +188,8 @@ function display_mood(){
                     mood_index = mood["mood"];
                     data.push(mood_index);
 
-                    date = mood.date;
-                    label_date = date.slice(5)
+                    date = new Date(mood.date);
+                    label_date = (date.toString()).slice(4,10)
                     label.push(label_date);
 
                 }
@@ -203,8 +203,6 @@ function display_mood(){
     var url = `./php/userAuth.php?action=getMood&email=${email}`;
     request.open("GET", url, true); // synchronous
     request.send();
-
-    // labels =  ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
     
     renderChart(data, label);
@@ -261,6 +259,9 @@ function renderChart(data, labels){
                 }
             },
             scales: {
+                xAxes:[{
+                    type: 'category',
+                }],
                 yAxes: [{
                     ticks: {
                         max: 6,
