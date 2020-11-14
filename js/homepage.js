@@ -85,10 +85,10 @@ function display_milestone(){
                     //console.log(count_down);
 
                     str+= `
-                        <div class="col-xl-4">
-                            <div class="card" >
-                                <div class="card-body" style="padding:0">
-                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+                        <div class="col-xl-4" >
+                            <div class="card" style="margin-bottom:10px" >
+                                <div class="card-body" style="padding:0; ">
+                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px; margin-top:0;">${count_down} DAYS LEFT</h1>
                                     <p class="card-text" style="color:black; font-size:large">${description}</p>
                                 </div>
                             </div>
