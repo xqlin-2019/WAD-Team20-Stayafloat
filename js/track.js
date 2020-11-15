@@ -20,9 +20,11 @@ function add_milestone(){
 
     if(description==""||date ==""){
         document.getElementById("update_status").innerHTML = "<span style='color: red;'>Please fill in both inputs!</span>";         
-        console.log("error");
         return;
-    }else{
+    }else if(new Date(date).getTime() < (new Date()).getTime()){
+        document.getElementById("update_status").innerHTML = "<span style='color: red;'>This date is has already past! Please input a date after today!</span>";         
+        console.log("error");
+    }else {
         var url = `./php/userAuth.php?action=addMilestone&email=${email}&description=${description}&date=${date}`;
 
     }
@@ -64,14 +66,14 @@ function get_milestone(){
                     var date = milestone.date;
                     var count_down = countdown(date);
                     var description = milestone.description;
-                    //console.log(count_down);
+                    console.log(date);
                     var ms_ID = milestone.ms_ID;
 
                     str+= `
                         <div class="col-xl-4">
-                            <div class="card">
+                            <div class="card" style="margin-bottom: 10px;">
                                 <div class="card-body" style="padding:0">
-                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px;">${count_down} DAYS LEFT</h1>
+                                    <h1 class="card-title text-uppercase  text-white" style=" background-color: #102B72; padding:20px; margin:0">${count_down} DAYS LEFT</h1>
                                     <p class="card-text" style="color:black; font-size:large">${description}</p>
 
                                     <button type="button" id="deleteBtn" class="btn btn-link btn-sm" onclick="remove_milestone(${ms_ID});">Delete</button>
@@ -136,7 +138,7 @@ function add_mood(){
                 document.getElementById("update_status").innerHTML = "<span style='background-color: green;color: white; margin-bottom:10px;'>New Mood Added!</span>";
             }
             else {
-                document.getElementById("update_status").innerHTML = "<span style='color: red;'>An error occured</span>";         
+                document.getElementById("update_status").innerHTML = "<span style='color: red;'>An error occured</span>";
             }
         }
     }
@@ -162,15 +164,15 @@ function add_mood(){
         return;
     }else{
         if (mood == 1){
-            document.getElementById("update_mood_status").innerHTML = "<div style='color:red'>Cheer Up Pal!! Things will get better!!<br><a href='home.html' class='text-center'>Go read some articles and relax!</a></div>";
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:red'>Cheer Up Pal!! Things will get better!!<br><a href='index.html' class='mood_a'>Go read some articles and relax!</a></div>";
         }else if (mood == 2){
-            document.getElementById("update_mood_status").innerHTML = "<div style='color:orange'> Don't Worry Pal!! Tough Time Don't Last, But Tough People Do! Push Through! <br> <a href='relax.html' class='text-center'>Relax with some music!</a></div>";
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:orange'> Don't Worry Pal!! Tough Time Don't Last, But Tough People Do! Push Through! <br> <a href='relax.html' class='mood_a'>Relax with some music!</a></div>";
         }else if (mood == 3){
-            document.getElementById("update_mood_status").innerHTML = "<div style='color:grey'>WAKE UP WAKE UP!<br><a href='tracking.html' class='text-center'> No time already, look at all your countdowns!</a></div>";
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:grey'>WAKE UP WAKE UP!<br><a href='tracking.html' class='mood_a'> No time already, look at all your countdowns!</a></div>";
         }else if (mood == 4){
-            document.getElementById("update_mood_status").innerHTML = "<div style='color:goldenrod'> Stay Happy, My Friend!<br><a href='news.html' class='text-center'>Catch up with some news!</a></div>";
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:goldenrod'> Stay Happy, My Friend!<br><a href='news.html' class='mood_a'>Catch up with some news!</a></div>";
         }else if (mood == 5){
-            document.getElementById("update_mood_status").innerHTML = "<div style='color:#add8e6'>Good job! You deserve a break!!<br><a href='relax.html' class='text-center'>Go watch some videos!</a></div>";
+            document.getElementById("update_mood_status").innerHTML = "<div style='color:#add8e6'>Good job! You deserve a break!!<br><a href='relax.html' class='mood_a'>Go watch some videos!</a></div>";
         };
         var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}`;
 
@@ -221,7 +223,6 @@ function display_mood(){
     request.open("GET", url, true); // synchronous
     request.send();
 
-    
     renderChart(data,label);
 
 }
