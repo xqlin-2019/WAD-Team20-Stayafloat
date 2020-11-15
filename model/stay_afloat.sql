@@ -54,16 +54,16 @@ INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","Mer
 INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","BYEBYE 2020!!!!","2021-01-01");
 INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","Ang Pao!!!!","2021-02-12");
 
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-01");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","3","2020-11-02");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-03");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-04");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-05");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-06");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-07");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-08");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-09";
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","3","2020-11-09");
 INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-09");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-10");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-10");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-11");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-12");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-12");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-13");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-14");
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-15");
 
 
 COMMIT;
