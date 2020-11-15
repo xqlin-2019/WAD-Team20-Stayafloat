@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `moods` (
   `email` varchar(50) NOT NULL,
   `mood` char(1) NOT NULL,
   `date` DATE NOT NULL,
+  `entry` varchar(256) NOT NULL,
   PRIMARY KEY (`mood_ID`),
   FOREIGN KEY (`email`) REFERENCES `user`(`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -54,16 +55,16 @@ INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","Mer
 INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","BYEBYE 2020!!!!","2021-01-01");
 INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","Ang Pao!!!!","2021-02-12");
 
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-09");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","3","2020-11-09");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-09");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-10");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-11");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-12");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-12");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-13");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-14");
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","5","2020-11-15");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","2","2020-11-09", "Feeling tired.....");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","3","2020-11-09", "Can't wait for the weekend");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","4","2020-11-09", "I hate CT");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","4","2020-11-10", "I had 3 mental breakdowns");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","5","2020-11-11", "I FEEL GOOOOOD 5");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","2","2020-11-12", "Wah sian, so many projs");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","5","2020-11-12", "Late for school lol");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","4","2020-11-13", "Lorem Ipsup");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","4","2020-11-14", "LMAO A for TEST WHEEE");
+INSERT INTO moods (email, mood, date, entry) VALUES ("demo@smu.edu.sg","5","2020-11-15", "STILL NEED FILM CRIES.");
 
 
 COMMIT;

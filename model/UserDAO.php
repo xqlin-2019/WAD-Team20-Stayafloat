@@ -171,17 +171,19 @@
             return $status;
         }
 
-        function addMood($email,$mood, $date){
+        function addMood($email,$mood, $date,$entry){
             
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
 
-            $sql = "insert into moods (email, mood, date) values (:email, :mood, :date)";
+            $sql = "insert into moods (email, mood, date, entry) values (:email, :mood, :date, :entry)";
             
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->bindParam(":mood", $mood, PDO::PARAM_STR);
             $stmt->bindParam(":date", $date, PDO::PARAM_STR);
+            $stmt->bindParam(":entry", $entry, PDO::PARAM_STR);
+
 
             $status = $stmt->execute();
 
@@ -194,7 +196,7 @@
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
-            $sql = "select mood, date, mood_ID from moods where email= :email";
+            $sql = "select mood, date, mood_ID, entry from moods where email= :email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -205,7 +207,8 @@
 
                $mood = array("mood" => $row["mood"],
                                 "date" => $row["date"],
-                                "mood_ID" => $row["mood_ID"]);
+                                "mood_ID" => $row["mood_ID"],
+                                "entry" => $row["entry"]);
                 $moods[] = $mood;
 
             }

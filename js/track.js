@@ -59,7 +59,9 @@ function get_milestone(){
             //console.log(obj)
             milestones_arr = obj.milestones
             if (obj.retrieve_status == "successful"){
+
                 milestones_arr.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
                 for(milestone of milestones_arr){
                     //console.log(milestone);
                     // console.log(milestone.date);
@@ -156,9 +158,11 @@ function add_mood(){
     var email = sessionStorage.getItem('email');
     var today = new Date();
     var date = today.toISOString().substring(0, 10);
+    var entry = document.getElementById("diary_entry").value;
+    // console.log(entry);
 
 
-    if(mood==""){
+    if(mood=="" || entry == ""){
         document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>Please fill in the input!</span>";         
         console.log("error");
         return;
@@ -174,7 +178,7 @@ function add_mood(){
         }else if (mood == 5){
             document.getElementById("update_mood_status").innerHTML = "<div style='color:#add8e6'>Good job! You deserve a break!!<br><a href='relax.html' class='mood_a'>Go watch some videos!</a></div>";
         };
-        var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}`;
+        var url = `./php/userAuth.php?action=addMood&email=${email}&mood=${mood}&date=${date}&entry=${entry}`;
 
     }
 
@@ -192,13 +196,25 @@ function display_mood(){
     var str = "";
     var data =[];
     var label=[];
+    var entry="";
+    var mood_label = {
+        1 : 'Unhappy', 2 : 'Worried', 3 : 'Sleepy', 4 : 'Contented',  5: 'Relaxed'
+    }
+    var mood_color = {
+        1 : 'rgba(255, 0, 0, 0.5)', 2 : 'rgba(255, 165, 0, 0.5)', 3 : 'rgba(128, 128, 128, 0.5)', 4 : 'rgba(218, 165, 32, 0.5)',  5: 'rgba(173, 216, 230, 0.5)'
+    }
+
     request.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ) {
             var obj = JSON.parse(this.responseText); // JS JSON object
+
             mood_arr = obj.moods;
             if (obj.moodRetrieve_status == "successful"){
+
+
+
             
-                    for(mood of mood_arr){
+                    for(mood of mood_arr.reverse()){
 
                     // mood_index = mood["mood"];
                     // data.push(mood_index);
@@ -211,7 +227,30 @@ function display_mood(){
                     data.push(point);
                     
 
-                }
+
+                
+                    
+                    entry += `<div style = "margin-bottom:10px;">
+                        <span class = "badge-dark" style = "padding:10px;">${mood.date}</span>
+                        </div>
+
+                        <div class="card mb-3 mx-auto" style="background-color:${mood_color[mood.mood]}; ">
+                            <div class="row no-gutters">
+
+                                <div class="col-md-8">
+                                    <div class="card-body" style = "padding-top: 0px; "padding-bottom:30px">
+                                    <h5 class="card-title">${mood_label[mood.mood]}</h5>
+                                    <p class="card-text">${mood.entry}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+
+                    }
+                    
+                    document.getElementById("entry").innerHTML= entry;
+
             }
             
         }
@@ -247,7 +286,6 @@ function renderChart(data, label){
         data: {
             labels: label,
             datasets: [{
-                label:false,
                 data: data,
                 showLine:false,
                 fill:false,
@@ -307,7 +345,7 @@ function renderChart(data, label){
                         }
                     }
                 }]
-            }
+            },
         },
         
      });

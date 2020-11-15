@@ -172,9 +172,11 @@
         $email = $_GET["email"];
         $mood = $_GET["mood"];
         $date = $_GET["date"];
+        $entry = $_GET["entry"];
+
 
         $dao = new UserDAO();
-        $status = $dao->addMood($email,$mood, $date);
+        $status = $dao->addMood($email,$mood, $date, $entry);
         if($status){
             return array("update_mood_status" => "successful","email" => $email);
         }
