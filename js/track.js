@@ -162,7 +162,7 @@ function add_mood(){
     // console.log(entry);
 
 
-    if(mood=="" || entry == ""){
+    if(mood==""){
         document.getElementById("update_mood_status").innerHTML = "<span style='color: red;'>Please fill in the input!</span>";         
         console.log("error");
         return;
