@@ -131,7 +131,7 @@ function get_videos(){
 
 
 
-    var apikey = 'AIzaSyCcqgH0HBgYXb6CCeZvNp0YR_IbZQFa2TA';
+    var apikey = 'AIzaSyCbFDHnn-Y3U7e_rRLLJFYlXdaAufTK0gk';
     
     var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist`;
 
@@ -190,9 +190,9 @@ function search_videos(){
     console.log(query)
 
 
-    var apikey = 'AIzaSyADWdrrP3pbeap29wuVgbusK2ndJMU7e6w';
+    var apikey = 'AIzaSyCbFDHnn-Y3U7e_rRLLJFYlXdaAufTK0gk';
     
-    var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist&restriction=SG`;
+    var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist`;
 
     console.log(url)
     request.open("GET", url, true);
