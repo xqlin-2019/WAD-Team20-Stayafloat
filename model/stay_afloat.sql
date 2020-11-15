@@ -54,7 +54,7 @@ INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","Mer
 INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","BYEBYE 2020!!!!","2021-01-01");
 INSERT INTO milestones (email, description, date) VALUES ("demo@smu.edu.sg","Ang Pao!!!!","2021-02-12");
 
-INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-09";
+INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","2","2020-11-09");
 INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","3","2020-11-09");
 INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-09");
 INSERT INTO moods (email, mood, date) VALUES ("demo@smu.edu.sg","4","2020-11-10");
