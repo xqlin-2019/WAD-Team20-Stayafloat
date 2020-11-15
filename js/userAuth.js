@@ -75,7 +75,6 @@ function clear_session() {
 
 // User Login
 function process_login(){
-    document.getElementById("login_status").innerHTML = "";
     var request = new XMLHttpRequest(); 
 
     request.onreadystatechange = function() {
