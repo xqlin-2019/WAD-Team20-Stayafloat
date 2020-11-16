@@ -131,7 +131,7 @@ function get_videos(){
 
 
 
-    var apikey = 'AIzaSyCbFDHnn-Y3U7e_rRLLJFYlXdaAufTK0gk';
+    var apikey = '';
     
     var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist`;
 
@@ -190,7 +190,7 @@ function search_videos(){
     console.log(query)
 
 
-    var apikey = 'AIzaSyCbFDHnn-Y3U7e_rRLLJFYlXdaAufTK0gk';
+    var apikey = '';
     
     var url= `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${apikey}&q=${query}&type=playlist`;
 
